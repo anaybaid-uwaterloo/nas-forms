@@ -6,11 +6,11 @@ This is developed to recreate and help navigate between multiple tabs on a singl
 
 ## General Project Overview
 
-In this project, I`ve tried to present and develop the following:
+In this project, I've tried to present and develop the following:
 - **A sidebar** with six clickable tabs (Namely represented as Tab 1, Tab 2, etc.).
 - **Six webpages** that display different fields and query boxes for each tab, with proper redirection. 
 
-Each tab in the sidebar corresponds to a webpage where users can input information, which is them aimed to be saved in a database for information storage and retreival - Users can also retrieve this information later. I`ve build this using **React** on the frontend, **Java Spring Boot** on the backend, and **MongoDB** for data storage for now (subject to change(s)).
+Each tab in the sidebar corresponds to a webpage where users can input information, which is them aimed to be saved in a database for information storage and retreival - Users can also retrieve this information later. I've build this using **React** on the frontend, **Java Spring Boot** on the backend, and **MongoDB** for data storage for now (subject to change(s)).
 
 ### Technologies Used for Development 
 - **Frontend**: React, HTML5, CSS3
@@ -22,7 +22,7 @@ Each tab in the sidebar corresponds to a webpage where users can input informati
 ## Getting Started with this Project
 
 ### Prerequisites for Downloads and Availability
-To get started, you would need to have **Node.js**, **Java (JDK 11 or higher)**, and **MongoDB** installed on your local machine. I`ve provided the download links below for reference if needed.
+To get started, you would need to have **Node.js**, **Java (JDK 11 or higher)**, and **MongoDB** installed on your local machine. I've provided the download links below for reference if needed.
 
 1. [Download Node.js](https://nodejs.org/) (at least version 14 or higher).
 2. [Download JDK](https://adoptopenjdk.net/) and set up Java environment.
@@ -39,7 +39,7 @@ cd forms
 
 ### Installing required Dependencies
 
-I`ve divided this project is divided into two main parts: the backend and frontend, each with its own dependencies. They are as follows:
+I've divided this project is divided into two main parts: the backend and frontend, each with its own dependencies. They are as follows:
 
 #### Backend Dependencies
 
@@ -129,7 +129,7 @@ This command should then start the React app, which should normally be available
 
 ## Project Structure as thought out so far 
 
-This is a tentative breakdown that I`ve thought of the project structure, more so to help me figure out and try to understand where each component fits.
+This is a tentative breakdown that I've thought of the project structure, more so to help me figure out and try to understand where each component fits.
 
 ```
 forms/
