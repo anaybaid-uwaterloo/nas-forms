@@ -219,6 +219,19 @@ Example usage:
 
 ---
 
+## Deployment
+1. A sample `index.html` file has also been added o this repository while work is in progress, to demonstrate a certain workable framework
+2. Regarding form autosaves, every time the user types or leaves a field, JavaScript captures the input and temporarily stores it. When switching tabs, instead of the page resetting, the data is retrieved and loaded back into the form, giving the appearance of “auto-saving.” For a temporary save (data stored only for the session), we can use the sessionStorage object, which retains information as long as the browser tab is open. This provides a way to store key-value pairs within a user's session (while keeping the data isolated from other tabs or windows). If we would like the data to persist across browser sessions (even after the user closes and reopens the browser), we’d use localStorage instead, which retains data even after the browser is closed.
+
+Implementation Process would be: 
+
+Add Event Listeners: Use JavaScript event listeners to detect changes or blurs (when the user leaves an input field). Every time a field is updated, the listener saves the input's current state.
+
+Saving to sessionStorage or localStorage: As data is entered, store each form field’s value in sessionStorage or localStorage with unique keys that identify each field in each tab (e.g., tab1-name for the "name" field in Tab 1).
+
+Retrieving Data on Tab Switch: When switching tabs, check sessionStorage for existing saved values. If any values are found, load them back into the respective form fields, effectively restoring the user’s progress.
+---
+
 ## License
 
 This project is licensed under the MIT License and for NAS Appraisal Services. This free to use, modify, and distribute among NAS members involved in this project, now or in the future.
