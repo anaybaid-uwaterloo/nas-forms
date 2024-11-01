@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAS Forms Web Application</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        
+        .sidebar {
+            width: 220px;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding-top: 20px;
+        }
+        
+        .sidebar button {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 15px;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .sidebar button:hover {
+            background-color: #1abc9c;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #ecf0f1;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .form-section {
+            margin-bottom: 20px;
+        }
+        
+        .form-section label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-section input[type="text"],
+        .form-section input[type="email"],
+        .form-section input[type="file"],
+        .form-section input[type="number"],
+        .form-section textarea,
+        .form-section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+        }
+        
+        .form-section textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        
+        .form-section button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .form-section button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <button onclick="showTabContent(1)">Tab 1</button>
+        <button onclick="showTabContent(2)">Tab 2</button>
+        <button onclick="showTabContent(3)">Tab 3</button>
+        <button onclick="showTabContent(4)">Tab 4</button>
+        <button onclick="showTabContent(5)">Tab 5</button>
+    </div>
+
+    <div class="content">
+        <div id="tab-1" class="tab-content active">
+            <h2>Tab 1</h2>
+            <div class="form-section">
+                <label>Appraisal ID:</label>
+                <input type="text" id="appraisalId" placeholder="Enter Appraisal ID">
+            </div>
+            <div class="form-section">
+                <label>Form Number:</label>
+                <input type="text" id="formNumber" placeholder="Enter Form Number">
+            </div>
+            <div class="form-section">
+                <label>Name:</label>
+                <input type="text" id="name" placeholder="Enter Name">
+            </div>
+            <div class="form-section">
+                <label>Email:</label>
+                <input type="email" id="email" placeholder="Enter Email">
+            </div>
+            <div class="form-section">
+                <label>Correspondence Address:</label>
+                <textarea id="correspondenceAddress" placeholder="Enter Address"></textarea>
+            </div>
+            <div class="form-section">
+                <label>Upload PDF:</label>
+                <input type="file" id="pdfUpload" accept="application/pdf">
+            </div>
+            <div class="form-section">
+                <label>Upload Image:</label>
+                <input type="file" id="imageUpload" accept="image/*">
+            </div>
+            <button onclick="saveData(1)">Save Tab 1 Information</button>
+        </div>
+
+        <div id="tab-2" class="tab-content">
+            <h2>Tab 2</h2>
+            <div class="form-section">
+                <label>Appraiser Name:</label>
+                <input type="text" id="appraiserName" placeholder="Enter Appraiser Name">
+            </div>
+            <div class="form-section">
+                <label>Cost of Property:</label>
+                <input type="number" id="propertyCost" placeholder="Enter Cost of Property">
+            </div>
+            <div class="form-section">
+                <label>Property Type:</label>
+                <select id="propertyType">
+                    <option value="residential">Residential</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="industrial">Industrial</option>
+                    <option value="land">Land</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label>Loan Purpose:</label>
+                <select id="loanPurpose">
+                    <option value="purchase">Purchase</option>
+                    <option value="refinance">Refinance</option>
+                    <option value="construction">Construction</option>
+                </select>
+            </div>
+            <button onclick="saveData(2)">Save Tab 2 Information</button>
+        </div>
+
+        <div id="tab-3" class="tab-content">
+            <h2>Tab 3</h2>
+            <div class="form-section">
+                <label>Inspection Date:</label>
+                <input type="date" id="inspectionDate">
+            </div>
+            <div class="form-section">
+                <label>Appraisal Fee:</label>
+                <input type="number" id="appraisalFee" placeholder="Enter Appraisal Fee">
+            </div>
+            <div class="form-section">
+                <label>Condition of Property:</label>
+                <select id="propertyCondition">
+                    <option value="excellent">Excellent</option>
+                    <option value="good">Good</option>
+                    <option value="fair">Fair</option>
+                    <option value="poor">Poor</option>
+                </select>
+            </div>
+            <button onclick="saveData(3)">Save Tab 3 Information</button>
+        </div>
+
+        <div id="tab-4" class="tab-content">
+            <h2>Tab 4</h2>
+            <div class="form-section">
+                <label>Assessor Name:</label>
+                <input type="text" id="assessorName" placeholder="Enter Assessor Name">
+            </div>
+            <div class="form-section">
+                <label>Comments:</label>
+                <textarea id="comments" placeholder="Enter any additional information"></textarea>
+            </div>
+            <button onclick="saveData(4)">Save Tab 4 Information</button>
+        </div>
+
+        <div id="tab-5" class="tab-content">
+            <h2>Tab 5</h2>
+            <div class="form-section">
+                <label>Additional Documents (PDF):</label>
+                <input type="file" id="additionalDocs" accept="application/pdf">
+            </div>
+            <button onclick="saveData(5)">Save Tab 5 Information</button>
+        </div>
+    </div>
+
+    <script>
+        function showTabContent(tabNumber) {
+            var tabs = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById("tab-" + tabNumber).classList.add("active");
+        }
+
+        function saveData(tabNumber) {
+            alert("Data for Tab " + tabNumber + " saved.");
+        }
+    </script>
+</body>
+</html>
