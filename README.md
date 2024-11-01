@@ -86,100 +86,99 @@ This should help install all packages needed for the React app.
 To connect to MongoDB, we would need to set up environment variables in Java Spring Boot.
 
 To do so, in the `backend/src/main/resources` directory, we would create an 'application.properties' file (or use the existing one):
-******************************
 
 ```properties
 spring.data.mongodb.uri=<Your MongoDB Connection String>
 server.port=8080
 ```
 
-Replace `<Your MongoDB Connection String>` with your MongoDB URI. If you’re using MongoDB locally, it might look something like this:
+Over here, you would have to replace `<Your MongoDB Connection String>` with your personalised MongoDB URI. If you’re using MongoDB locally, then it might look something like this:
 
 ```properties
-spring.data.mongodb.uri=mongodb://localhost:27017/your_database_name
+spring.data.mongodb.uri=mongodb://localhost:27017/your_personalised_database_name
 ```
 
-If you’re using MongoDB Atlas, get the connection string from your Atlas dashboard.
+If MongoDB Atlas is being used, then we you would have to get the connection string from your Atlas dashboard.
 
-### Step 4: Running the Application
+### Running the Application
 
-Now that everything is set up, let’s start both the backend and frontend servers.
+Now that (hopefully) everything is set up in terms of repository planning, we can then start on both the backend and frontend servers for this project.
 
 #### Starting the Backend
 
-From the `backend` directory, start the Spring Boot server:
+From the `backend` directory, we would first start the Java Spring Boot server by following the command below:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-The backend server will start on the port specified in your `application.properties` file (default is 8080). You should see a message confirming the server is running.
+The backend server should start on the port specified in the 'application.properties' file (the default is normally 8080). Then there should be a message showing confirming the server is running.
 
 #### Starting the Frontend
 
-Now, open a new terminal window, navigate to the `frontend` directory, and start the frontend server:
+We can now open a new terminal window, then navigate to the 'frontend' directory, and start the frontend server from the command(s) below:
 
 ```bash
 cd ../frontend
 npm start
 ```
 
-This command will start the React app, which will be available in your browser at [http://localhost:3000](http://localhost:3000).
+This command should then start the React app, which should normally be available in your local browser at [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure as thought out so far 
 
-Here's a breakdown of the project structure to help you understand where each component fits.
+This is a tentative breakdown that I've thought of the project structure, more so to help me figure out and try to understand where each component fits.
 
 ```
-project-root/
+forms/
 │
 ├── backend/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/com/example/app/
 │   │   │   │   ├── controller/
-│   │   │   │   │   └── TabController.java    # REST API logic for saving and retrieving data
+│   │   │   │   │   └── TabController.java    # This would have the REST API logic for saving and retrieving data
 │   │   │   │   ├── model/
-│   │   │   │   │   └── TabData.java          # Defines the schema for form data
+│   │   │   │   │   └── TabData.java          # This would define the schema for form data
 │   │   │   │   └── repository/
-│   │   │   │       └── TabRepository.java    # MongoDB data access interface
+│   │   │   │       └── TabRepository.java    # This is for setting up the MongoDB data access interface
 │   │   │   └── resources/
-│   │   │       └── application.properties    # Spring Boot config file
+│   │   │       └── application.properties    # This would have the Spring Boot config file
 │   ├── pom.xml                               # Maven configuration file
 │
 ├── frontend/
 │   ├── public/
-│   │   └── index.html         # Main HTML file for the React app
+│   │   └── index.html         # This is our main HTML file for the React app
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Sidebar.js     # Sidebar with six tabs
-│   │   │   ├── Webpage.js     # Webpage component displaying form for each tab
-│   │   │   └── Form.js        # Form component with fields and query boxes
-│   │   ├── App.js             # Main React component organizing layout
-│   │   ├── api.js             # Helper functions for making API calls
-│   │   └── index.js           # Entry point for the React app
+│   │   │   ├── Sidebar.js     # Current Sidebar with six tabs for now, can increase / decrease depending on requirements
+│   │   │   ├── Webpage.js     # This is the Webpage component displaying form for each tab
+│   │   │   └── Form.js        # Actual Form component with fields and query boxes
+│   │   ├── App.js             # This is to organise the main React component organizing layout
+│   │   ├── api.js             # Some helper functions for making API calls
+│   │   └── index.js           # This is the entry point for the React app
 │   └── styles/
-│       └── styles.css         # Main CSS file for styling the app
+│       └── styles.css         # Our main CSS file for styling the app
 │
-└── README.md                  # This documentation file
+└── README.md                  # This documentation file that is being worked on
 ```
 
 ---
 
-## 📂 Code Walkthrough
+## Code Walkthrough for Documentation
 
-### Backend Code (Spring Boot)
+### Backend Code (Java Spring Boot) ******************************************
 
-- **`TabData.java`**: This file defines the MongoDB schema for form data (fields like `field1`, `field2`, etc.).
-- **`TabRepository.java`**: A Spring Data repository interface for interacting with MongoDB.
-- **`TabController.java`**: Defines API endpoints (e.g., `/api/tab1`) for saving and retrieving data for each tab.
+- **'TabData.java'**: This file would define the MongoDB schema for form data (fields like 'field1', 'field2', etc.).
+- **`TabRepository.java`**: Created a Spring Data repository like interface for the purpose of interacting with MongoDB.
+- **`TabController.java`**: This was done to define API endpoints (e.g., '/api/tab1', '/api/tab[name]) for saving and retrieving data for each tab, as necessary.
 
-### Frontend Code (React)
+### Frontend Code (React, HTML5, CSS3)
 
-- **`App.js`**: The main component that organizes the layout. It includes the sidebar and displays the appropriate webpage based on the active tab.
-- **`Sidebar.js`**: Displays the six tabs. When you click on a tab, it sets the active tab in the `App` component.
+- **`App.js`**: This is the main component that organizes the layout. It includes the sidebar and displays the appropriate webpage based on the active tab, and other features as necessary for addition.
+- **`Sidebar.js`**: This would be the displays the for our six tabs as of now. When we click on a tab, it sets the active tab in the 'App' component, to be set for viewing.
 - **`Webpage.js`**: Displays the form for the active tab. It retrieves data from the backend and passes it to the `Form` component.
 - **`Form.js`**: Contains the fields and query boxes for each tab, allowing users to submit or retrieve data.
 - **`api.js`**: Contains helper functions like `fetchTabData` and `saveTabData` for making API calls to the backend.
