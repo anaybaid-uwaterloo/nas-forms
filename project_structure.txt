@@ -1,0 +1,23 @@
+nas-forms-project/
+├── backend/                     # Backend (server-side) code
+│   ├── controllers/             # Controllers for handling business logic of each route
+│   ├── models/                  # Database models representing data structures (e.g., Mongoose models)
+│   ├── routes/                  # API endpoints that frontend communicates with
+│   ├── index.js                 # Main entry point for the backend server
+│   ├── package.json             # Lists backend dependencies
+│   ├── .env                     # Environment variables (e.g., PORT, DATABASE_URL)
+│   └── config/
+│       └── db.js                # Database configuration for connecting to MongoDB
+└── frontend/                    # Frontend (client-side) code
+    ├── public/                  # Public static files (e.g., index.html)
+    ├── src/                     # Main source code for React application
+    │   ├── components/          # Reusable React components
+    │   ├── pages/               # Application pages (e.g., form submission page)
+    │   ├── App.js               # Main App component (entry point for React app)
+    │   ├── index.js             # React DOM entry point
+    │   ├── api/                 # Contains API calls to communicate with backend
+    │   │   └── formApi.js       # API file for form submission requests
+    │   ├── assets/              # Static assets (e.g., images, logos)
+    │   └── styles/              # Stylesheets (e.g., App.css)
+    ├── package.json             # Lists frontend dependencies
+    └── .env                     # Environment variables (e.g., REACT_APP_API_URL)
