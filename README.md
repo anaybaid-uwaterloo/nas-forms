@@ -1,59 +1,59 @@
-# Full-Stack Web Application with Sidebar Tabs (Java Spring Boot Backend)
+# NAS Forms Web Application with Sidebar Tabs - Java Spring Boot Backend 
 
-Welcome to this full-stack web application project! This app is designed to help you navigate between multiple tabs, each representing a unique webpage with fields and query boxes for user input. Whether you're here to learn more about the code structure, set it up on your machine, or customize it for your needs, this `README.md` has got you covered.
-
----
-
-## 🌟 Project Overview
-
-In this project, we have:
-- **A sidebar** with six clickable tabs (Tab 1, Tab 2, etc.).
-- **Six webpages** that display different fields and query boxes for each tab.
-
-Each tab in the sidebar corresponds to a webpage where users can input information, which is then saved to a database. Users can also retrieve this information later. This project is built with **React** on the frontend, **Java Spring Boot** on the backend, and **MongoDB** for data storage.
-
-### Technologies Used
-- **Frontend**: React, HTML, CSS
-- **Backend**: Java Spring Boot
-- **Database**: MongoDB
+This is developed to recreate and help navigate between multiple tabs on a single interface, each representing a unique webpage with fields and query boxes for user input. This repository presents code structure, personalised set-up instructions on local machines for deployment, and is even customizable to varied needs. 
 
 ---
 
-## 🚀 Getting Started
+## General Project Overview
 
-### Prerequisites
-To get started, you need to have **Node.js**, **Java (JDK 11 or higher)**, and **MongoDB** installed on your computer.
+In this project, I've tried to present and develop the following:
+- **A sidebar** with six clickable tabs (Namely represented as Tab 1, Tab 2, etc.).
+- **Six webpages** that display different fields and query boxes for each tab, with proper redirection. 
+
+Each tab in the sidebar corresponds to a webpage where users can input information, which is them aimed to be saved in a database for information storage and retreival - Users can also retrieve this information later. I've build this using **React** on the frontend, **Java Spring Boot** on the backend, and **MongoDB** for data storage for now (subject to change(s)).
+
+### Technologies Used for Development 
+- **Frontend**: React, HTML5, CSS3
+- **Backend**: Java Spring Boot (Given our Java 8 codebase) 
+- **Database**: MongoDB 
+
+---
+
+## Getting Started with this Project
+
+### Prerequisites for Downloads and Availability
+To get started, you would need to have **Node.js**, **Java (JDK 11 or higher)**, and **MongoDB** installed on your local machine. I've provided the download links below for reference if needed.
 
 1. [Download Node.js](https://nodejs.org/) (at least version 14 or higher).
 2. [Download JDK](https://adoptopenjdk.net/) and set up Java environment.
 3. [Download MongoDB](https://www.mongodb.com/try/download/community) and start a local MongoDB server or use MongoDB Atlas for a cloud database.
 
-### Step 1: Clone the Repository
+### Cloning the Repository
 
-Begin by cloning this repository to your local machine:
+This repository can be cloned to your local machine by using the commands below:
 
 ```bash
-git clone <your-repository-url>
-cd project-root
+git clone https://github.com/anaybaid-uwaterloo/forms
+cd forms
 ```
 
-### Step 2: Install Dependencies
+### Installing required Dependencies
 
-This project is divided into two main parts: the backend and frontend, each with its own dependencies. Let’s go through them one by one.
+I've divided this project is divided into two main parts: the backend and frontend, each with its own dependencies. They are as follows:
 
 #### Backend Dependencies
 
-Navigate to the `backend` directory (for Spring Boot) and create a new Spring Boot project if it hasn’t been done already.
+We first navigate to the 'backend' directory (for Java Spring Boot) and create a new Spring Boot project if it hasn’t been done already.
 
 ```bash
 cd backend
 ```
 
-Install **Spring Boot dependencies** (if using Maven or Gradle) in your `pom.xml` or `build.gradle`:
-- **Spring Web** for creating RESTful APIs.
-- **Spring Data MongoDB** for MongoDB interactions.
+Then install **Spring Boot dependencies** (if using Maven or Gradle) in your `pom.xml` or `build.gradle`:
+- Use **Spring Web** for creating RESTful APIs.
+- Use **Spring Data MongoDB** for MongoDB interactions.
 
-Here’s an example `pom.xml` file:
+Here’s an example `pom.xml` file which is as follows:
 
 ```xml
 <dependencies>
@@ -70,22 +70,23 @@ Here’s an example `pom.xml` file:
 
 #### Frontend Dependencies
 
-Next, move to the `frontend` directory to install the frontend dependencies:
+We would then move to the 'frontend' directory to install the frontend dependencies as follows:
 
 ```bash
 cd ../frontend
 npm install
 ```
 
-This will install all packages needed for the React app.
+This should help install all packages needed for the React app.
 
 ---
 
-### Step 3: Configure Environment Variables
+### Configuring Environment Variables
 
-To connect to MongoDB, we need to set up environment variables in Spring Boot.
+To connect to MongoDB, we would need to set up environment variables in Java Spring Boot.
 
-In the `backend/src/main/resources` directory, create an `application.properties` file (or use the existing one):
+To do so, in the `backend/src/main/resources` directory, we would create an 'application.properties' file (or use the existing one):
+******************************
 
 ```properties
 spring.data.mongodb.uri=<Your MongoDB Connection String>
