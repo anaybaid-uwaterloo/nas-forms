@@ -33,7 +33,7 @@ To get started, you would need to have **Node.js**, **Java (JDK 11 or higher)**,
 This repository can be cloned to your local machine by using the commands below:
 
 ```bash
-git clone https://github.com/anaybaid-uwaterloo/forms
+git clone https://github.com/anaybaid-uwaterloo/nas-forms
 cd forms
 ```
 
