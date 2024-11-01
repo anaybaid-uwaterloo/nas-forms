@@ -1,4 +1,4 @@
-# Full-Stack Web Application with Sidebar Tabs
+# Full-Stack Web Application with Sidebar Tabs (Java Spring Boot Backend)
 
 Welcome to this full-stack web application project! This app is designed to help you navigate between multiple tabs, each representing a unique webpage with fields and query boxes for user input. Whether you're here to learn more about the code structure, set it up on your machine, or customize it for your needs, this `README.md` has got you covered.
 
@@ -9,12 +9,12 @@ Welcome to this full-stack web application project! This app is designed to help
 In this project, we have:
 - **A sidebar** with six clickable tabs (Tab 1, Tab 2, etc.).
 - **Six webpages** that display different fields and query boxes for each tab.
-  
-Each tab in the sidebar corresponds to a webpage where users can input information, which is then saved to a database. Users can also retrieve this information later. This project is built with **React** on the frontend, **Node.js** with **Express** on the backend, and **MongoDB** for data storage.
+
+Each tab in the sidebar corresponds to a webpage where users can input information, which is then saved to a database. Users can also retrieve this information later. This project is built with **React** on the frontend, **Java Spring Boot** on the backend, and **MongoDB** for data storage.
 
 ### Technologies Used
 - **Frontend**: React, HTML, CSS
-- **Backend**: Node.js, Express
+- **Backend**: Java Spring Boot
 - **Database**: MongoDB
 
 ---
@@ -22,10 +22,11 @@ Each tab in the sidebar corresponds to a webpage where users can input informati
 ## 🚀 Getting Started
 
 ### Prerequisites
-To get started, you need to have **Node.js** and **MongoDB** installed on your computer.
+To get started, you need to have **Node.js**, **Java (JDK 11 or higher)**, and **MongoDB** installed on your computer.
 
 1. [Download Node.js](https://nodejs.org/) (at least version 14 or higher).
-2. [Download MongoDB](https://www.mongodb.com/try/download/community) and start a local MongoDB server or use MongoDB Atlas for a cloud database.
+2. [Download JDK](https://adoptopenjdk.net/) and set up Java environment.
+3. [Download MongoDB](https://www.mongodb.com/try/download/community) and start a local MongoDB server or use MongoDB Atlas for a cloud database.
 
 ### Step 1: Clone the Repository
 
@@ -42,14 +43,30 @@ This project is divided into two main parts: the backend and frontend, each with
 
 #### Backend Dependencies
 
-Navigate to the `backend` directory and install the dependencies:
+Navigate to the `backend` directory (for Spring Boot) and create a new Spring Boot project if it hasn’t been done already.
 
 ```bash
 cd backend
-npm install
 ```
 
-This command will install all necessary backend packages, such as **Express** (for routing) and **Mongoose** (for MongoDB interactions).
+Install **Spring Boot dependencies** (if using Maven or Gradle) in your `pom.xml` or `build.gradle`:
+- **Spring Web** for creating RESTful APIs.
+- **Spring Data MongoDB** for MongoDB interactions.
+
+Here’s an example `pom.xml` file:
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+</dependencies>
+```
 
 #### Frontend Dependencies
 
@@ -66,24 +83,19 @@ This will install all packages needed for the React app.
 
 ### Step 3: Configure Environment Variables
 
-To connect to MongoDB, we need to set up environment variables. In the `backend` directory, create a file called `.env`:
+To connect to MongoDB, we need to set up environment variables in Spring Boot.
 
-```bash
-cd ../backend
-touch .env
-```
+In the `backend/src/main/resources` directory, create an `application.properties` file (or use the existing one):
 
-Inside the `.env` file, add the following:
-
-```plaintext
-MONGO_URI=<Your MongoDB Connection String>
-PORT=5000
+```properties
+spring.data.mongodb.uri=<Your MongoDB Connection String>
+server.port=8080
 ```
 
 Replace `<Your MongoDB Connection String>` with your MongoDB URI. If you’re using MongoDB locally, it might look something like this:
 
-```plaintext
-MONGO_URI=mongodb://localhost:27017/your_database_name
+```properties
+spring.data.mongodb.uri=mongodb://localhost:27017/your_database_name
 ```
 
 If you’re using MongoDB Atlas, get the connection string from your Atlas dashboard.
@@ -94,13 +106,13 @@ Now that everything is set up, let’s start both the backend and frontend serve
 
 #### Starting the Backend
 
-From the `backend` directory, start the backend server:
+From the `backend` directory, start the Spring Boot server:
 
 ```bash
-npm start
+./mvnw spring-boot:run
 ```
 
-The backend server will start on the port specified in your `.env` file (default is 5000). You should see a message confirming the server is running.
+The backend server will start on the port specified in your `application.properties` file (default is 8080). You should see a message confirming the server is running.
 
 #### Starting the Frontend
 
@@ -123,14 +135,18 @@ Here's a breakdown of the project structure to help you understand where each co
 project-root/
 │
 ├── backend/
-│   ├── controllers/
-│   │   └── tabController.js   # API logic for saving and retrieving data for each tab
-│   ├── models/
-│   │   └── TabData.js         # Defines the schema for form data in MongoDB
-│   ├── routes/
-│   │   └── tabRoutes.js       # Defines API endpoints for each tab
-│   ├── index.js               # Entry point for the backend server
-│   └── .env                   # Environment variables file (MongoDB URI, port)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/app/
+│   │   │   │   ├── controller/
+│   │   │   │   │   └── TabController.java    # REST API logic for saving and retrieving data
+│   │   │   │   ├── model/
+│   │   │   │   │   └── TabData.java          # Defines the schema for form data
+│   │   │   │   └── repository/
+│   │   │   │       └── TabRepository.java    # MongoDB data access interface
+│   │   │   └── resources/
+│   │   │       └── application.properties    # Spring Boot config file
+│   ├── pom.xml                               # Maven configuration file
 │
 ├── frontend/
 │   ├── public/
@@ -153,14 +169,13 @@ project-root/
 
 ## 📂 Code Walkthrough
 
-### Backend Code
+### Backend Code (Spring Boot)
 
-- **`index.js`**: This is the main entry point for the backend server. It sets up Express, connects to MongoDB, and defines middleware.
-- **`controllers/tabController.js`**: Contains functions to save and retrieve data for each tab.
-- **`models/TabData.js`**: Defines the schema for form data, such as `field1`, `field2`, etc.
-- **`routes/tabRoutes.js`**: Sets up API routes, like `POST /api/tab1` to save data for Tab 1 and `GET /api/tab1` to retrieve it.
+- **`TabData.java`**: This file defines the MongoDB schema for form data (fields like `field1`, `field2`, etc.).
+- **`TabRepository.java`**: A Spring Data repository interface for interacting with MongoDB.
+- **`TabController.java`**: Defines API endpoints (e.g., `/api/tab1`) for saving and retrieving data for each tab.
 
-### Frontend Code
+### Frontend Code (React)
 
 - **`App.js`**: The main component that organizes the layout. It includes the sidebar and displays the appropriate webpage based on the active tab.
 - **`Sidebar.js`**: Displays the six tabs. When you click on a tab, it sets the active tab in the `App` component.
@@ -170,16 +185,16 @@ project-root/
 
 ---
 
-## 🖥️ API Endpoints
+## 🖥️ API Endpoints (Spring Boot)
 
-Here’s a list of API endpoints that the backend provides. Each endpoint corresponds to one of the tabs:
+Here’s a list of API endpoints provided by the Spring Boot backend. Each endpoint corresponds to one of the tabs:
 
-- **GET /api/tab{n}**: Retrieves saved data for a specific tab.
-- **POST /api/tab{n}**: Saves data entered in a specific tab.
+- **GET /api/tab/{tabId}**: Retrieves saved data for a specific tab.
+- **POST /api/tab/{tabId}**: Saves data entered in a specific tab.
 
 Example usage:
-- **Retrieve Tab 1 data**: `GET /api/tab1`
-- **Save Tab 1 data**: `POST /api/tab1` with JSON payload.
+- **Retrieve Tab 1 data**: `GET /api/tab/1`
+- **Save Tab 1 data**: `POST /api/tab/1` with JSON payload.
 
 ---
 
@@ -193,24 +208,11 @@ Example usage:
 
 ## 🌐 Deployment
 
-1. **Deploying Backend**: You can deploy the backend on platforms like Heroku, AWS, or DigitalOcean. Ensure that MongoDB is accessible by using a service like MongoDB Atlas.
+1. **Deploying Backend (Spring Boot)**: You can deploy the Spring Boot backend on platforms like Heroku, AWS, or DigitalOcean. Ensure that MongoDB is accessible by using a service like MongoDB Atlas.
 2. **Deploying Frontend**: You can deploy the frontend on services like Netlify, Vercel, or GitHub Pages. Just make sure to update any API URLs to the deployed backend URL.
-
----
-
-## 🛠️ Customization
-
-- **Adding More Tabs**: To add more tabs, simply add more routes in `tabRoutes.js` and update the frontend’s `Sidebar.js`.
-- **Modifying Form Fields**: If you want to add or change fields, modify the `TabData` schema in `TabData.js` and update the `Form.js` component.
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License. You’re free to use, modify, and distribute this code as you see fit!
-
----
-
-## 🙋‍♂️ Need Help?
-
-If you run into issues or have questions, feel free to open an issue in the repository. Happy coding!
+This project is licensed under the MIT License. You’re free to use, modify, and distribute this
