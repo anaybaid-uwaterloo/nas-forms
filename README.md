@@ -169,7 +169,7 @@ forms/
 
 ## Code Walkthrough for Documentation
 
-### Backend Code (Java Spring Boot) ******************************************
+### Backend Code (Java Spring Boot) 
 
 - **`TabData.java`**: This file would define the MongoDB schema for form data (fields like `field1`, `field2`, etc.).
 - **`TabRepository.java`**: This creates a Spring Data repository like interface for the purpose of interacting with MongoDB.
