@@ -25,8 +25,8 @@ Each tab in the sidebar corresponds to a webpage where users can input informati
 To get started, you would need to have **Node.js**, **Java (JDK 11 or higher)**, and **MongoDB** installed on your local machine. I've provided the download links below for reference if needed.
 
 1. [Download Node.js](https://nodejs.org/) (at least version 14 or higher).
-2. [Download JDK](https://adoptopenjdk.net/) and set up Java environment.
-3. [Download MongoDB](https://www.mongodb.com/try/download/community) and start a local MongoDB server or use MongoDB Atlas for a cloud database.
+2. [Download JDK](https://adoptopenjdk.net/) and then set up Java environment.
+3. [Download MongoDB](https://www.mongodb.com/try/download/community) and then start a local MongoDB server or use MongoDB Atlas for a cloud database.
 
 ### Cloning the Repository
 
@@ -43,17 +43,17 @@ I've divided this project is divided into two main parts: the backend and fronte
 
 #### Backend Dependencies
 
-We first navigate to the `backend` directory (for Java Spring Boot) and create a new Spring Boot project if it hasn’t been done already.
+We first navigate to the `backend` directory (for Java Spring Boot) and create a new Spring Boot project if it hasn't been done already.
 
 ```bash
 cd backend
 ```
 
-Then install **Spring Boot dependencies** (if using Maven or Gradle) in your `pom.xml` or `build.gradle`:
+Then you would have to install **Spring Boot dependencies** (if using Maven or Gradle) in your `pom.xml` or `build.gradle`:
 - Use **Spring Web** for creating RESTful APIs.
 - Use **Spring Data MongoDB** for MongoDB interactions.
 
-Here’s an example `pom.xml` file which is as follows:
+Here's an example `pom.xml` file which is as follows:
 
 ```xml
 <dependencies>
@@ -92,7 +92,7 @@ spring.data.mongodb.uri=<Your MongoDB Connection String>
 server.port=8080
 ```
 
-Over here, you would have to replace `<Your MongoDB Connection String>` with your personalised MongoDB URI. If you’re using MongoDB locally, then it might look something like this:
+Over here, you would have to replace `<Your MongoDB Connection String>` with your personalised MongoDB URI. If you're using MongoDB locally, then it might look something like this:
 
 ```properties
 spring.data.mongodb.uri=mongodb://localhost:27017/your_personalised_database_name
@@ -179,18 +179,18 @@ forms/
 
 - **`App.js`**: This is the main component that organizes the layout. It includes the sidebar and displays the appropriate webpage based on the active tab, and other features as necessary for addition.
 - **`Sidebar.js`**: This would be for the displays for our six tabs as of now. When we click on a tab, it sets the active tab in the `App` component, to be set for viewing.
-- **`Webpage.js`**: Displays the form for the active tab. It retrieves data from the backend and passes it to the `Form` component.
-- **`Form.js`**: Contains the fields and query boxes for each tab, allowing users to submit or retrieve data.
-- **`api.js`**: Contains helper functions like `fetchTabData` and `saveTabData` for making API calls to the backend.
+- **`Webpage.js`**: This would help with displaying the form for the active tab. It should be able to retrieve data from the backend and passes it to the `Form` component.
+- **`Form.js`**: This contains the fields and query boxes for each tab, allowing users to submit or retrieve data.
+- **`api.js`**: This contains helper functions for now, like `fetchTabData` and `saveTabData` for the purpose of making API calls to the backend.
 
 ---
 
-## 🖥️ API Endpoints (Spring Boot)
+## API Endpoints (Java Spring Boot)
 
-Here’s a list of API endpoints provided by the Spring Boot backend. Each endpoint corresponds to one of the tabs:
+I've mentioned a list of API endpoints provided by the Spring Boot backend. We have that each endpoint corresponds to one of the tabs:
 
-- **GET /api/tab/{tabId}**: Retrieves saved data for a specific tab.
-- **POST /api/tab/{tabId}**: Saves data entered in a specific tab.
+- **GET /api/tab/{tabId}**: This retrieves saved data for a specific tab.
+- **POST /api/tab/{tabId}**: This would help save data entered in a specific tab.
 
 Example usage:
 - **Retrieve Tab 1 data**: `GET /api/tab/1`
@@ -198,21 +198,21 @@ Example usage:
 
 ---
 
-## 📖 How It Works
+## How this Works
 
-1. **Sidebar and Tab Navigation**: When you click on a tab in the sidebar, the `App.js` component updates the active tab, and `Webpage.js` renders the corresponding form.
+1. **Sidebar and Tab Navigation**: When we click on a tab in the sidebar, the `App.js` component updates the active tab, and `Webpage.js` renders the corresponding form.
 2. **Form Data Handling**: Each form allows users to submit data to the backend via an API call. When data is submitted, it`s saved to MongoDB.
-3. **Data Retrieval**: When you navigate back to a tab, the form retrieves the saved data for that tab from MongoDB, so the data persists across sessions.
+3. **Data Retrieval**: When one navigates back to a tab, the form then retrieves the saved data for that tab from MongoDB, so that we have the data persists across sessions.
 
 ---
 
-## 🌐 Deployment
+## Deployment
 
-1. **Deploying Backend (Spring Boot)**: You can deploy the Spring Boot backend on platforms like Heroku, AWS, or DigitalOcean. Ensure that MongoDB is accessible by using a service like MongoDB Atlas.
-2. **Deploying Frontend**: You can deploy the frontend on services like Netlify, Vercel, or GitHub Pages. Just make sure to update any API URLs to the deployed backend URL.
+1. **Deploying Backend (Spring Boot)**: The Spring Boot backend can be deployed on multiple platforms like Heroku, AWS, or DigitalOcean. We have to ensure though that MongoDB is accessible by using a global service like MongoDB Atlas.
+2. **Deploying Frontend**: If necessary, we can use deployment tools like Netlify, Vercel, or GitHub Pages - just keeping in mind to update any API URLs to the deployed backend URL.
 
 ---
 
-## 📜 License
+## License
 
-This project is licensed under the MIT License. You’re free to use, modify, and distribute this
+This project is licensed under the MIT License and for NAS Appraisal Services. This free to use, modify, and distribute among NAS members involved in this project, now or in the future.
