@@ -226,9 +226,7 @@ Example usage:
 Implementation Process would be: 
 
 Add Event Listeners: Use JavaScript event listeners to detect changes or blurs (when the user leaves an input field). Every time a field is updated, the listener saves the input's current state.
-
-Saving to sessionStorage or localStorage: As data is entered, store each form field’s value in sessionStorage or localStorage with unique keys that identify each field in each tab (e.g., tab1-name for the "name" field in Tab 1).
-
+Saving to sessionStorage or localStorage: As data is entered, store each form field’s value in sessionStorage or localStorage with unique keys that identify each field in each tab (e.g., tab1-name for the "name" field in Tab 1). 
 Retrieving Data on Tab Switch: When switching tabs, check sessionStorage for existing saved values. If any values are found, load them back into the respective form fields, effectively restoring the user’s progress.
 ---
 
