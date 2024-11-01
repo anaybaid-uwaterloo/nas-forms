@@ -95,7 +95,13 @@ server.port=8080
 Over here, you would have to replace `<Your MongoDB Connection String>` with your personalised MongoDB URI. If you're using MongoDB locally, then it might look something like this:
 
 ```properties
-spring.data.mongodb.uri=mongodb://localhost:27017/your_personalised_database_name
+spring.data.mongodb.uri=mongodb://localhost:27017/your_personalised_database_name (such as nas-forms)
+
+nas_forms> db.forms.insertOne({ name: "Sample Form", description: "This is a sample form." })
+{
+  acknowledged: true,
+  insertedId: ObjectId('6724ba8af9513273de24b5b1')
+}
 ```
 
 If MongoDB Atlas is being used, then we you would have to get the connection string from your Atlas dashboard.
