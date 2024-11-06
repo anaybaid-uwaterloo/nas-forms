@@ -148,7 +148,7 @@ forms/
 │   │   │   │   │   └── TabController.java    # This would have the REST API logic for saving and retrieving data
 │   │   │   │   ├── model/
 │   │   │   │   │   └── TabData.java          # This would define the schema for form data
-│   │   │   │   └── repository/
+│   │   │   │   └── repository/ 
 │   │   │   │       └── TabRepository.java    # This is for setting up the MongoDB data access interface
 │   │   │   └── resources/
 │   │   │       └── application.properties    # This would have the Spring Boot config file
