@@ -166,7 +166,7 @@ forms/
 │   │   ├── api.js             # Some helper functions for making API calls
 │   │   └── index.js           # This is the entry point for the React app
 │   └── styles/
-│       └── styles.css         # Our main CSS file for styling the app
+│       └── styles.css         # Our main CSS file for styling the app, for colour and interactive features based on it
 │
 └── README.md                  # This documentation file that is being worked on
 ```
