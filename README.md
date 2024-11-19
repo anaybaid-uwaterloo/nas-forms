@@ -1,8 +1,12 @@
 # NAS Forms Web Application with Sidebar Tabs - Java Spring Boot Backend 
 
-# Google Doc created for better focus on 
+# As of November 18th, 2024, a Google Document was created for better focus on 
     1. Autosaves
     2. PDF Generation
+
+That can be referenced now until further updates
+
+************************************************************************************
 
 This is developed to recreate and help navigate between multiple tabs on a single interface, each representing a unique webpage with fields and query boxes for user input. This repository presents code structure, personalised set-up instructions on local machines for deployment, and is even customizable to varied needs. 
 
