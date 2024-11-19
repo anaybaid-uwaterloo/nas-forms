@@ -29,3 +29,19 @@ nas-forms/
 │       └── styles.css         # Our main CSS file for styling the app
 │
 └── README.md                  # This documentation file that is being worked on
+
+What I have created for demonstration:
+
+nas-forms/
+|-- public/
+|   |-- index.html
+|   |-- script.js
+|   |-- style.css
+|
+|-- server/
+|   |-- app.js
+|
+|-- node_modules/
+|-- package.json
+|-- package-lock.json
+
