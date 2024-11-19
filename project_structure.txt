@@ -30,7 +30,7 @@ nas-forms/
 │
 └── README.md                  # This documentation file that is being worked on
 
-What I have created for demonstration:
+What I have created for demonstration, and detailed the rest in a documentation file:
 
 nas-forms/
 |-- public/
