@@ -1,47 +1,8 @@
-nas-forms/
-│
-├── backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/example/app/
-│   │   │   │   ├── controller/
-│   │   │   │   │   └── TabController.java    # This would have the REST API logic for saving and retrieving data
-│   │   │   │   ├── model/
-│   │   │   │   │   └── TabData.java          # This would define the schema for form data
-│   │   │   │   └── repository/
-│   │   │   │       └── TabRepository.java    # This is for setting up the MongoDB data access interface
-│   │   │   └── resources/
-│   │   │       └── application.properties    # This would have the Spring Boot config file
-│   ├── pom.xml                               # Maven configuration file
-│
-├── frontend/
-│   ├── public/
-│   │   └── index.html         # This is our main HTML file for the React app
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Sidebar.js     # Current Sidebar with six tabs for now, can increase / decrease depending on requirements
-│   │   │   ├── Webpage.js     # This is the Webpage component displaying form for each tab
-│   │   │   └── Form.js        # Actual Form component with fields and query boxes
-│   │   ├── App.js             # This is to organise the main React component organizing layout
-│   │   ├── api.js             # Some helper functions for making API calls
-│   │   └── index.js           # This is the entry point for the React app
-│   └── styles/
-│       └── styles.css         # Our main CSS file for styling the app
-│
-└── README.md                  # This documentation file that is being worked on
+index.html file structure:
 
-What I have created for demonstration, and detailed the rest in a documentation file:
-
-nas-forms/
-|-- public/
-|   |-- index.html
-|   |-- script.js
-|   |-- style.css
-|
-|-- server/
-|   |-- app.js
-|
-|-- node_modules/
-|-- package.json
-|-- package-lock.json
+Multi-tab interface with dynamic content
+Collapsible form sections for easy navigation
+File upload capabilities for documents and images
+Final review tab where users can review entered data
+PDF generation using html2pdf.js
 
