@@ -1,468 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
- 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nationwide Appraisal Services Inc.</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Advanced NAS Forms Web Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Basic styles */
+        /* General Styling */
         body {
+            display: flex;
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #020607;
-            color: #e0e0e0;
-            line-height: 1.6;
-            transition: background-color 0.3s;
+            background-color: #ecf0f1;
+            color: #2c3e50;
         }
  
-        /* Header and Navigation */
-        header {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-        }
- 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
- 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
- 
-        nav ul li {
-            margin: 0 15px;
-        }
- 
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            position: relative;
-        }
- 
-        nav ul li a::after {
-            content: '';
-            display: block;
-            height: 2px;
-            width: 0;
-            background: #bb86fc;
-            transition: width 0.3s;
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-        }
- 
-        nav ul li a:hover::after {
-            width: 100%;
-            left: 0;
-        }
- 
-        main {
-            padding: 20px;
-        }
- 
-        section {
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 5px;
-            background-color: #1e1e1e;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
- 
-        h2 {
-            color: #bb86fc;
-        }
- 
-        /* Form Styles */
-        form {
+        .sidebar {
+            width: 260px;
+            background-color: #2c3e50;
+            color: white;
             display: flex;
             flex-direction: column;
-            max-width: 600px;
-            margin: auto;
-            background-color: #292929;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            height: 100vh;
+            padding-top: 20px;
         }
  
-        form div {
-            margin-bottom: 15px;
-        }
- 
-        form label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #ffffff;
-        }
- 
-        form input[type="text"],
-        form input[type="password"],
-        form input[type="email"],
-        form textarea {
-            padding: 10px;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: #333;
-            color: #ffffff;
-        }
- 
-        form button {
-            background-color: #bb86fc;
-            color: #121212;
-            padding: 10px;
+        .sidebar button {
+            background-color: #34495e;
+            color: white;
             border: none;
-            border-radius: 5px;
+            padding: 15px;
+            text-align: left;
+            width: 100%;
             cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
- 
-        form button:hover {
-            background-color: #9b59b6;
-        }
- 
-        footer {
-            background-color: #1a1a1a;
-            color: #ffffff;
-            text-align: center;
-            padding: 15px 0;
+            font-size: 16px;
+            outline: none;
             position: relative;
-            bottom: 0;
-            width: 100%;
         }
  
-        footer p {
-            margin: 5px 0;
+        .sidebar button:hover {
+            background-color: #1abc9c;
         }
  
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav ul li {
-                display: block;
-                margin: 5px 0;
-            }
-        }
- 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            padding-top: 60px;
-        }
- 
-        .modal-content {
-            background-color: #292929;
-            margin: 5% auto;
+        .content {
+            flex: 1;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
  
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
         }
  
-        .close:hover,
-        .close:focus {
-            color: #ffffff;
-            text-decoration: none;
+        .active {
+            display: block;
+        }
+ 
+        /* Collapsible Sections */
+        .collapsible {
+            background-color: #2980b9;
+            color: white;
             cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
         }
  
-        .hidden {
+        .collapsible:hover {
+            background-color: #3498db;
+        }
+ 
+        .collapsible:after {
+            content: '\002B';
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+ 
+        .collapsible.active:after {
+            content: "\2212";
+        }
+ 
+        .collapsible-content {
+            padding: 0 18px;
             display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border-radius: 0 0 8px 8px;
+            margin-top: -10px;
+            padding: 15px;
         }
  
-        /* Additional Interactive Sections */
-        .upload-section {
-            border: 2px dashed #bb86fc;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
+        /* Form Styling */
+        .form-section {
+            margin-bottom: 20px;
         }
  
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+        .form-section label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
         }
  
-        .form-full-width {
-            grid-column: span 2;
+        .form-section input[type="text"],
+        .form-section input[type="email"],
+        .form-section input[type="file"],
+        .form-section input[type="number"],
+        .form-section input[type="date"],
+        .form-section textarea,
+        .form-section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
         }
  
-        /* Enhanced Animation */
-        .form-message {
-            color: #bb86fc;
-            margin-top: 10px;
-            transition: opacity 0.5s ease-in-out;
+        .form-section textarea {
+            resize: vertical;
+            height: 100px;
+        }
+ 
+        /* PDF Button */
+        #downloadPDFBtn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+ 
+        #downloadPDFBtn:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
- 
 <body>
-    <header>
-        <h1>NAS Appraisals - Forms Replacement</h1>
-        <nav>
-            <ul>
-                <li><a href="#nas">NAS Forms Replacement version 1.0.0</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="sidebar">
+        <button onclick="showTabContent(1)">Tab 1: Basic Details</button>
+        <button onclick="showTabContent(2)">Tab 2: Property Information</button>
+        <button onclick="showTabContent(3)">Tab 3: Appraisal Details</button>
+        <button onclick="showTabContent(4)">Tab 4: Assessor Notes</button>
+        <button onclick="showTabContent(5)">Tab 5: Final Review</button>
+    </div>
  
-    <main>
-        <section id="appraisal-portal">
-            <h2>My Appraisal Portal</h2>
-            <p>Access all of your NAS data to complete any appraisal report.</p>
-            <form id="loginForm">
-                <div>
-                    <label for="username">Your NAS username</label>
-                    <input type="text" id="username" required>
+    <div class="content">
+        <!-- Tab 1 -->
+        <div id="tab-1" class="tab-content active">
+            <h2>Basic Details</h2>
+            <button class="collapsible">Personal Information</button>
+            <div class="collapsible-content">
+                <div class="form-section">
+                    <label>Appraisal ID:</label>
+                    <input type="text" id="appraisalId" placeholder="Enter Appraisal ID" required>
                 </div>
-                <div>
-                    <label for="password">Request form Information, form type</label>
-                    <input type="password" id="password" required>
+                <div class="form-section">
+                    <label>Name:</label>
+                    <input type="text" id="name" placeholder="Enter Name" required>
                 </div>
-                <div>
-                    <input type="checkbox" id="rememberMe">
-                    <label for="rememberMe">Remember my most recent form request</label>
+                <div class="form-section">
+                    <label>Email:</label>
+                    <input type="email" id="email" placeholder="Enter Email" required>
                 </div>
-                <button type="submit">Submit your form request</button>
-                <p><a href="#" style="color: #bb86fc;">More information on the types of forms you can submit</a></p>
-                <p><a href="#" style="color: #bb86fc;">Forgot your username?</a></p>
-                <p><a href="#" style="color: #bb86fc;">Need help with a form</a></p>
-            </form>
-        </section>
- 
-     
- 
-        <section id="appraisal-and-risk-management">
-            <h2>Appraisal Management</h2>
-            <p>NAS offers a complete appraisal management system that provides fast, reliable, and cost-effective
-                valuation services.</p>
-            <p>Lenders can rely on NAS to satisfy their evolving risk management policies with our auto-assignment
-                feature for impartial reports.</p>
-        </section>
- 
-        <section id="upload-documents">
-            <h2>Upload Documents</h2>
-            <div class="upload-section">
-                <p>Upload your documents here!</p>
-                <input type="file" id="documentUpload" multiple>
+                <div class="form-section">
+                    <label>Correspondence Address:</label>
+                    <textarea id="correspondenceAddress" placeholder="Enter Address"></textarea>
+                </div>
             </div>
-        </section>
- 
-        <section id="additional-information">
-            <h2>Additional Information</h2>
-            <button id="infoModalButton">More Info</button>
-        </section>
- 
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any questions, feel free to reach out to us:</p>
-            <form id="contactForm">
-                <div>
-                    <label for="contactName">Name</label>
-                    <input type="text" id="contactName" required>
+            <button class="collapsible">Document Upload</button>
+            <div class="collapsible-content">
+                <div class="form-section">
+                    <label>Upload PDF:</label>
+                    <input type="file" id="pdfUpload" accept="application/pdf">
                 </div>
-                <div>
-                    <label for="contactEmail">Email</label>
-                    <input type="email" id="contactEmail" required>
+                <div class="form-section">
+                    <label>Upload Image:</label>
+                    <input type="file" id="imageUpload" accept="image/*">
                 </div>
-                <div>
-                    <label for="contactMessage">Message</label>
-                    <textarea id="contactMessage" rows="4" required></textarea>
+            </div>
+            <button onclick="saveData(1)">Save Tab 1 Information</button>
+        </div>
+ 
+        <!-- Tab 2 -->
+        <div id="tab-2" class="tab-content">
+            <h2>Property Information</h2>
+            <button class="collapsible">Property Details</button>
+            <div class="collapsible-content">
+                <div class="form-section">
+                    <label>Property ID:</label>
+                    <input type="text" id="propertyId" placeholder="Enter Property ID" required>
                 </div>
-                <button type="submit">Send Message</button>
-                <p class="form-message" id="contactMessageDisplay"></p>
-            </form>
-        </section>
- 
-        <section id="feedback">
-            <h2>Feedback</h2>
-            <form id="feedbackForm">
-                <div>
-                    <label for="feedbackName">Name</label>
-                    <input type="text" id="feedbackName" required>
+                <div class="form-section">
+                    <label>Location:</label>
+                    <input type="text" id="location" placeholder="Enter Location" required>
                 </div>
-                <div>
-                    <label for="feedbackComments">Comments</label>
-                    <textarea id="feedbackComments" rows="4" required></textarea>
+                <div class="form-section">
+                    <label>Property Type:</label>
+                    <select id="propertyType">
+                        <option value="">Select Type</option>
+                        <option value="Residential">Residential</option>
+                        <option value="Commercial">Commercial</option>
+                    </select>
                 </div>
-                <button type="submit">Submit Feedback</button>
-                <p class="form-message" id="feedbackMessageDisplay"></p>
-            </form>
-        </section>
+                <div class="form-section">
+                    <label>Size (sq ft):</label>
+                    <input type="number" id="size" placeholder="Enter Size" required>
+                </div>
+            </div>
+            <button onclick="saveData(2)">Save Tab 2 Information</button>
+        </div>
  
-        <section id="faq">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions about our services.</p>
-            <button id="faqModalButton">View FAQ</button>
-        </section>
+        <!-- Tab 3 -->
+        <div id="tab-3" class="tab-content">
+            <h2>Appraisal Details</h2>
+            <button class="collapsible">Market Information</button>
+            <div class="collapsible-content">
+                <div class="form-section">
+                    <label>Market Value:</label>
+                    <input type="number" id="marketValue" placeholder="Enter Market Value" required>
+                </div>
+                <div class="form-section">
+                    <label>Appraisal Date:</label>
+                    <input type="date" id="appraisalDate" required>
+                </div>
+            </div>
+            <button onclick="saveData(3)">Save Tab 3 Information</button>
+        </div>
  
-        <section id="support">
-            <h2>Support</h2>
-            <p>Our support team is here to help you.</p>
-            <button id="supportButton">Contact Support</button>
-        </section>
-    </main>
+        <!-- Tab 4 -->
+        <div id="tab-4" class="tab-content">
+            <h2>Assessor Notes</h2>
+            <button class="collapsible">Inspection Observations</button>
+            <div class="collapsible-content">
+                <div class="form-section">
+                    <label>Notes:</label>
+                    <textarea id="notes" placeholder="Enter notes about the property"></textarea>
+                </div>
+            </div>
+            <button onclick="saveData(4)">Save Tab 4 Information</button>
+        </div>
  
-    <footer>
-        <p>&copy; 2024 Nationwide Appraisal Services Inc. All rights reserved.</p>
-    </footer>
- 
-    <!-- Modals -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeInfoModal">&times;</span>
-            <h2>Additional Information</h2>
-            <p>Here you can find more details about our services and features.</p>
+        <!-- Tab 5: Final Review -->
+        <div id="tab-5" class="tab-content">
+            <h2>Final Review</h2>
+            <p>Review your information in each section below and confirm before export:</p>
+            <div id="reviewSection">
+                <!-- Dynamic content generated by JavaScript to review each tab’s data -->
+            </div>
+            <button id="downloadPDFBtn" onclick="downloadPDF()">Download as PDF</button>
         </div>
     </div>
  
-    <div id="faqModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeFaqModal">&times;</span>
-            <h2>Frequently Asked Questions</h2>
-            <p>Q: What services do you offer?</p>
-            <p>A: We offer a full suite of national valuation services.</p>
-        </div>
-    </div>
- 
-    <div id="supportModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeSupportModal">&times;</span>
-            <h2>Contact Support</h2>
-            <p>You can reach our support team at sample_email@sample_domain.com or call us at (xxx) xxx-xxxx.</p>
-        </div>
-    </div>
- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script>
-        // Function to display messages
-        function showMessage(sectionId, message, isError) {
-            const messageDisplay = document.getElementById(`${sectionId}MessageDisplay`);
-            messageDisplay.textContent = message;
-            messageDisplay.style.color = isError ? 'red' : 'green';
-            messageDisplay.classList.remove('hidden');
-            setTimeout(() => {
-                messageDisplay.classList.add('hidden');
-            }, 3000);
+        const tabData = {};
+ 
+        function showTabContent(tabNumber) {
+            document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+            document.getElementById(`tab-${tabNumber}`).classList.add("active");
         }
  
-        // Login form validation
-        function validateLoginForm(username, password) {
-            if (!username || !password) {
-                return 'Username and Password are required.';
-            }
-            return '';
+        document.querySelectorAll(".collapsible").forEach(button => {
+            button.addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        });
+ 
+        function saveData(tabNumber) {
+            const tab = document.getElementById(`tab-${tabNumber}`);
+            const inputs = tab.querySelectorAll("input, select, textarea");
+            tabData[`tab${tabNumber}`] = {};
+ 
+            inputs.forEach(input => {
+                tabData[`tab${tabNumber}`][input.id] = input.value;
+            });
+ 
+            alert(`Data saved for Tab ${tabNumber}`);
         }
  
-        // Login form submission handler
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = validateLoginForm(username, password);
+        function generateReviewSection() {
+            const reviewSection = document.getElementById("reviewSection");
+            reviewSection.innerHTML = "";
  
-            if (errorMessage) {
-                showMessage('appraisal-portal', errorMessage, true);
-            } else {
-                // Simulate a successful login (you would replace this with actual login logic)
-                showMessage('appraisal-portal', 'Login successful!', false);
-                // Here you could redirect the user or load user-specific data
+            for (const [key, value] of Object.entries(tabData)) {
+                const section = document.createElement("div");
+                section.innerHTML = `<h3>${key.replace("tab", "Tab ")} Data</h3>`;
+ 
+                for (const [inputId, inputValue] of Object.entries(value)) {
+                    section.innerHTML += `<p><strong>${inputId}:</strong> ${inputValue}</p>`;
+                }
+ 
+                reviewSection.appendChild(section);
             }
-        });
+        }
  
-        // Contact form submission handler
-        document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const contactName = document.getElementById('contactName').value;
-            const contactEmail = document.getElementById('contactEmail').value;
-            const contactMessage = document.getElementById('contactMessage').value;
- 
-            if (!contactName || !contactEmail || !contactMessage) {
-                showMessage('contact', 'All fields are required.', true);
-            } else {
-                showMessage('contact', 'Message sent successfully!', false);
-                // Clear the form fields after successful submission
-                this.reset();
-            }
-        });
- 
-        // Feedback form submission handler
-        document.getElementById('feedbackForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const feedbackName = document.getElementById('feedbackName').value;
-            const feedbackComments = document.getElementById('feedbackComments').value;
- 
-            if (!feedbackName || !feedbackComments) {
-                showMessage('feedback', 'All fields are required.', true);
-            } else {
-                showMessage('feedback', 'Feedback submitted successfully!', false);
-                // Clear the form fields after successful submission
-                this.reset();
-            }
-        });
- 
-        // Modal handlers
-        const infoModal = document.getElementById("infoModal");
-        const faqModal = document.getElementById("faqModal");
-        const supportModal = document.getElementById("supportModal");
- 
-        document.getElementById("infoModalButton").onclick = function () {
-            infoModal.style.display = "block";
-        };
- 
-        document.getElementById("faqModalButton").onclick = function () {
-            faqModal.style.display = "block";
-        };
- 
-        document.getElementById("supportButton").onclick = function () {
-            supportModal.style.display = "block";
-        };
- 
-        document.getElementById("closeInfoModal").onclick = function () {
-            infoModal.style.display = "none";
-        };
- 
-        document.getElementById("closeFaqModal").onclick = function () {
-            faqModal.style.display = "none";
-        };
- 
-        document.getElementById("closeSupportModal").onclick = function () {
-            supportModal.style.display = "none";
-        };
- 
-        window.onclick = function (event) {
-            if (event.target === infoModal || event.target === faqModal || event.target === supportModal) {
-                infoModal.style.display = "none";
-                faqModal.style.display = "none";
-                supportModal.style.display = "none";
-            }
-        };
+        function downloadPDF() {
+            generateReviewSection();
+            const reviewContent = document.getElementById("reviewSection");
+            html2pdf().from(reviewContent).save("NAS_Form_Review.pdf");
+        }
     </script>
 </body>
- 
 </html>
+ 
