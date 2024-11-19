@@ -318,27 +318,26 @@
         }
 
         // Function to download the review as a PDF
-       function downloadPDF() {
-        const reviewSection = document.getElementById('reviewSection');
-        const options = {
-            margin: 15, // Margin for the PDF page
-            filename: 'appraisal-review.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, letterRendering: true }, // Better text rendering
-            jsPDF: {
-                unit: 'mm', format: 'a4', orientation: 'portrait'
-            },
-            // Custom function to generate header text
-            header: function (data) {
-                const doc = data.doc;
-                doc.setFontSize(16);
-                doc.text('Appraisal Report - Final Review', 105, 20, null, null, 'center');
-            }
-        };
-        // Triggering the PDF generation from the review section
-        html2pdf().from(reviewSection).set(options).save();
-    }
-
+               function downloadPDF() {
+            const reviewSection = document.getElementById('reviewSection');
+            const options = {
+                margin: 15,
+                filename: 'appraisal-review.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, letterRendering: true },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                },
+                header: function (data) {
+                    const doc = data.doc;
+                    doc.setFontSize(16);
+                    doc.text('Appraisal Report - Final Review', 105, 20, null, null, 'center');
+                }
+            };
+            html2pdf().from(reviewSection).set(options).save();
+        }
 
         // Making collapsible sections interactive
         const collapsibles = document.querySelectorAll('.collapsible');
