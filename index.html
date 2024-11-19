@@ -6,7 +6,7 @@
     <title>Advanced NAS Forms Web Application</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* General Styling */
+        /* General Styling for the file */
         body {
             display: flex;
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             background-color: #ecf0f1;
             color: #2c3e50;
         }
- 
+
         .sidebar {
             width: 260px;
             background-color: #2c3e50;
@@ -24,7 +24,7 @@
             height: 100vh;
             padding-top: 20px;
         }
- 
+
         .sidebar button {
             background-color: #34495e;
             color: white;
@@ -37,16 +37,16 @@
             outline: none;
             position: relative;
         }
- 
+
         .sidebar button:hover {
             background-color: #1abc9c;
         }
- 
+
         .content {
             flex: 1;
             padding: 20px;
         }
- 
+
         .tab-content {
             display: none;
             padding: 20px;
@@ -55,12 +55,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
         }
- 
+
         .active {
             display: block;
         }
- 
-        /* Collapsible Sections */
+
+        /* Collapsible Sections as represented on each tab */
         .collapsible {
             background-color: #2980b9;
             color: white;
@@ -73,22 +73,22 @@
             font-size: 18px;
             border-radius: 4px;
         }
- 
+
         .collapsible:hover {
             background-color: #3498db;
         }
- 
+
         .collapsible:after {
             content: '\002B';
             font-weight: bold;
             float: right;
             margin-left: 5px;
         }
- 
+
         .collapsible.active:after {
             content: "\2212";
         }
- 
+
         .collapsible-content {
             padding: 0 18px;
             display: none;
@@ -98,18 +98,18 @@
             margin-top: -10px;
             padding: 15px;
         }
- 
+
         /* Form Styling */
         .form-section {
             margin-bottom: 20px;
         }
- 
+
         .form-section label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
         }
- 
+
         .form-section input[type="text"],
         .form-section input[type="email"],
         .form-section input[type="file"],
@@ -123,13 +123,13 @@
             border: 1px solid #bdc3c7;
             border-radius: 4px;
         }
- 
+
         .form-section textarea {
             resize: vertical;
             height: 100px;
         }
- 
-        /* PDF Button */
+
+        /* PDF Button added separately, overrides and adds information as intended on a PDF document, work needs to be done to make this customisable */
         #downloadPDFBtn {
             margin-top: 20px;
             padding: 12px 20px;
@@ -140,23 +140,23 @@
             cursor: pointer;
             font-size: 18px;
         }
- 
-        #downloadPDFBtn:hover {
+
+        #downloadPDFBtn:hover { 
             background-color: #c0392b;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <button onclick="showTabContent(1)">Tab 1: Basic Details</button>
+        <button onclick="showTabContent(1)">Tab 1: Basic Client Details</button>
         <button onclick="showTabContent(2)">Tab 2: Property Information</button>
         <button onclick="showTabContent(3)">Tab 3: Appraisal Details</button>
         <button onclick="showTabContent(4)">Tab 4: Assessor Notes</button>
-        <button onclick="showTabContent(5)">Tab 5: Final Review</button>
+        <button onclick="showTabContent(5)">Tab 5: Final Review</button> 
     </div>
- 
+
     <div class="content">
-        <!-- Tab 1 -->
+        <!-- Tab 1 information -->
         <div id="tab-1" class="tab-content active">
             <h2>Basic Details</h2>
             <button class="collapsible">Personal Information</button>
@@ -191,8 +191,8 @@
             </div>
             <button onclick="saveData(1)">Save Tab 1 Information</button>
         </div>
- 
-        <!-- Tab 2 -->
+
+        <!-- Tab 2 information-->
         <div id="tab-2" class="tab-content">
             <h2>Property Information</h2>
             <button class="collapsible">Property Details</button>
@@ -220,8 +220,8 @@
             </div>
             <button onclick="saveData(2)">Save Tab 2 Information</button>
         </div>
- 
-        <!-- Tab 3 -->
+
+        <!-- Tab 3 information -->
         <div id="tab-3" class="tab-content">
             <h2>Appraisal Details</h2>
             <button class="collapsible">Market Information</button>
@@ -237,8 +237,8 @@
             </div>
             <button onclick="saveData(3)">Save Tab 3 Information</button>
         </div>
- 
-        <!-- Tab 4 -->
+
+        <!-- Tab 4 information -->
         <div id="tab-4" class="tab-content">
             <h2>Assessor Notes</h2>
             <button class="collapsible">Inspection Observations</button>
@@ -250,69 +250,109 @@
             </div>
             <button onclick="saveData(4)">Save Tab 4 Information</button>
         </div>
- 
-        <!-- Tab 5: Final Review -->
+
+        <!-- Tab 5: Final Review information, collects information and saves a pdf document here -->
         <div id="tab-5" class="tab-content">
             <h2>Final Review</h2>
-            <p>Review your information in each section below and confirm before export:</p>
-            <div id="reviewSection">
-                <!-- Dynamic content generated by JavaScript to review each tab’s data -->
-            </div>
-            <button id="downloadPDFBtn" onclick="downloadPDF()">Download as PDF</button>
+            <p>Review your information in the sections below:</p>
+            <div id="reviewSection"></div>
+            <button id="downloadPDFBtn" onclick="downloadPDF()">Download PDF</button>
         </div>
     </div>
- 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <!-- This is the inclusion of the html2pdf.js library from a CDN to enable PDF generation from HTML content -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script> 
+
     <script>
-        const tabData = {};
- 
-        function showTabContent(tabNumber) {
-            document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
-            document.getElementById(`tab-${tabNumber}`).classList.add("active");
-        }
- 
-        document.querySelectorAll(".collapsible").forEach(button => {
-            button.addEventListener("click", function() {
-                this.classList.toggle("active");
-                const content = this.nextElementSibling;
-                content.style.display = content.style.display === "block" ? "none" : "block";
-            });
-        });
- 
+        // Function to save form data into localStorage
         function saveData(tabNumber) {
-            const tab = document.getElementById(`tab-${tabNumber}`);
-            const inputs = tab.querySelectorAll("input, select, textarea");
-            tabData[`tab${tabNumber}`] = {};
- 
-            inputs.forEach(input => {
-                tabData[`tab${tabNumber}`][input.id] = input.value;
-            });
- 
-            alert(`Data saved for Tab ${tabNumber}`);
+            const data = {};
+            if (tabNumber === 1) {
+                data.appraisalId = document.getElementById('appraisalId').value;
+                data.name = document.getElementById('name').value;
+                data.email = document.getElementById('email').value;
+                data.correspondenceAddress = document.getElementById('correspondenceAddress').value;
+                data.pdfUpload = document.getElementById('pdfUpload').files[0] ? document.getElementById('pdfUpload').files[0].name : '';
+                data.imageUpload = document.getElementById('imageUpload').files[0] ? document.getElementById('imageUpload').files[0].name : '';
+            }
+            if (tabNumber === 2) {
+                data.propertyId = document.getElementById('propertyId').value;
+                data.location = document.getElementById('location').value;
+                data.propertyType = document.getElementById('propertyType').value;
+                data.size = document.getElementById('size').value;
+            }
+            if (tabNumber === 3) {
+                data.marketValue = document.getElementById('marketValue').value;
+                data.appraisalDate = document.getElementById('appraisalDate').value;
+            }
+            if (tabNumber === 4) {
+                data.notes = document.getElementById('notes').value;
+            }
+
+            localStorage.setItem(`tab${tabNumber}Data`, JSON.stringify(data));
+            alert(`Tab ${tabNumber} data saved!`);
         }
- 
-        function generateReviewSection() {
-            const reviewSection = document.getElementById("reviewSection");
-            reviewSection.innerHTML = "";
- 
-            for (const [key, value] of Object.entries(tabData)) {
-                const section = document.createElement("div");
-                section.innerHTML = `<h3>${key.replace("tab", "Tab ")} Data</h3>`;
- 
-                for (const [inputId, inputValue] of Object.entries(value)) {
-                    section.innerHTML += `<p><strong>${inputId}:</strong> ${inputValue}</p>`;
-                }
- 
-                reviewSection.appendChild(section);
+
+        // Function to display the content of a tab
+        function showTabContent(tabNumber) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(`tab-${tabNumber}`).classList.add('active');
+            if (tabNumber === 5) {
+                showReviewSection();
             }
         }
- 
-        function downloadPDF() {
-            generateReviewSection();
-            const reviewContent = document.getElementById("reviewSection");
-            html2pdf().from(reviewContent).save("NAS_Form_Review.pdf");
+
+        // Function to show the review section in Tab 5
+        function showReviewSection() {
+            const reviewSection = document.getElementById('reviewSection');
+            reviewSection.innerHTML = ''; // Clearing existing content, and replacing it with the new content provided by the user in the specified tab
+            for (let i = 1; i <= 4; i++) {
+                const tabData = JSON.parse(localStorage.getItem(`tab${i}Data`));
+                if (tabData) {
+                    const section = document.createElement('div');
+                    section.innerHTML = `<h3>Tab ${i} Review:</h3><pre>${JSON.stringify(tabData, null, 2)}</pre>`;
+                    reviewSection.appendChild(section);
+                }
+            }
         }
+
+        // Function to download the review as a PDF
+       function downloadPDF() {
+        const reviewSection = document.getElementById('reviewSection');
+        const options = {
+            margin: 15, // Margin for the PDF page
+            filename: 'appraisal-review.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, letterRendering: true }, // Better text rendering
+            jsPDF: {
+                unit: 'mm', format: 'a4', orientation: 'portrait'
+            },
+            // Custom function to generate header text
+            header: function (data) {
+                const doc = data.doc;
+                doc.setFontSize(16);
+                doc.text('Appraisal Report - Final Review', 105, 20, null, null, 'center');
+            }
+        };
+        // Triggering the PDF generation from the review section
+        html2pdf().from(reviewSection).set(options).save();
+    }
+
+
+        // Making collapsible sections interactive
+        const collapsibles = document.querySelectorAll('.collapsible');
+        collapsibles.forEach(collapsible => {
+            collapsible.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        });
     </script>
 </body>
 </html>
- 
