@@ -1,39 +1,28 @@
-// Import required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-// Create an instance of Express
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Middleware
 app.use(bodyParser.json());
 
-// MongoDB connection
-const mongoURI = 'mongodb://localhost:27017/nas_forms'; // Update with your database name
+const mongoURI = 'mongodb://localhost:27017/nas_forms'; // Updated database name (verify host connection on MongoDB)
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.error('MongoDB connection error:', err));
-
-// Define a simple schema
-const formSchema = new mongoose.Schema({
+const formSchema = new mongoose.Schema({ // Schema defined 
   name: String,
   description: String,
 });
-
-// Create a model
-const Form = mongoose.model('Form', formSchema);
-
-// Routes
+const Form = mongoose.model('Form', formSchema); // Model created 
 app.get('/', (req, res) => {
   res.send('Welcome to the NAS Forms API!');
-});
+}); // routes sendout 
 
-// Route to create a new form
 app.post('/forms', async (req, res) => {
   try {
     const newForm = new Form(req.body);
@@ -44,9 +33,8 @@ app.post('/forms', async (req, res) => {
   }
 });
 
-// Route to get all forms
 app.get('/forms', async (req, res) => {
-  try {
+  try { // routes to get all forms 
     const forms = await Form.find();
     res.status(200).json(forms);
   } catch (error) {
@@ -54,7 +42,7 @@ app.get('/forms', async (req, res) => {
   }
 });
 
-// Start the server
+// Starting the server here, locally, hosted on HTTP url using REST APIs on MongoDB
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
